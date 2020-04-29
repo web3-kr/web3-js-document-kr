@@ -1,30 +1,27 @@
 
 =================================
-web3.js - Ethereum JavaScript API
+web3.js - 이더리움 자바스크립트 API 
 =================================
 
-web3.js is a collection of libraries which allow you to interact with a local or remote ethereum node,
-using a HTTP or IPC connection.
+Web3.js는 로컬 환경 또는 원격 환경의 이더리움 노드와 HTTP 또는 IPC 를 사용해서 인터렉션 할 수 있게 도와주는 라이브러리입니다.
+이 문서에서는  :ref:`web3.js 실행과 설치하기 <adding-web3>` 과정을 안내하고, API 레퍼런스를 다양한 예제와 함께 제공합니다.
 
-The following documentation will guide you through :ref:`installing and running web3.js <adding-web3>`,
-as well as providing a :ref:`API reference documentation <#id1>` with examples.
+목차:
 
-Contents:
-
-:ref:`Keyword Index <genindex>`, :ref:`Search Page <search>`
+:ref:`색인 <genindex>`, :ref:`검색 <search>`
 
 .. toctree::
    :maxdepth: 2
-   :caption: User Documentation
+   :caption: 시작하기
 
-   getting-started
+   바로 시작하기
    callbacks-promises-events
-   glossary
+   용어 안내
 
 
 .. toctree::
     :maxdepth: 2
-    :caption: API Reference
+    :caption: API 레퍼런스
 
     web3
     web3-eth
