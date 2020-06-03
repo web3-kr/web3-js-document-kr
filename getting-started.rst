@@ -3,36 +3,35 @@
 Getting Started
 ===============
 
-The web3.js library is a collection of modules which contain specific functionality for the ethereum ecosystem.
+web3.js 라이브러리는 이더리움 환경에서 사용할수 있는 여러 기능을 모듈화 해놓은 라이브러리 입니다.
 
-- The ``web3-eth`` is for the ethereum blockchain and smart contracts
-- The ``web3-shh`` is for the whisper protocol to communicate p2p and broadcast
-- The ``web3-bzz`` is for the swarm protocol, the decentralized file storage
-- The ``web3-utils`` contains useful helper functions for Dapp developers.
+- ``web3-eth`` 는 이더리움 블록체인과 스마트 컨트렉트를 위한 것 입니다.
+- ``web3-shh`` 는 p2p 통신을 하기위한 위스퍼 프로토콜 (whisper protocol)을 위한 것 입니다.
+- ``web3-bzz`` 는 탈중앙화된 파일 저장을 위한 스왐 프로토콜(swarm protocol) 을 위한 것 입니다
+- ``web3-utils`` 는 Dapp 개발자를 위한 많은 종류에 유용한 기능을 포함하고 있습니다.
 
 
 .. _adding-web3:
 
-Adding web3.js
+web3.js 추가하기
 ==============
 
 .. index:: npm
 .. index:: yarn
 
-First you need to get web3.js into your project. This can be done using the following methods:
-
+먼저, web3.js 를 프로젝트에 임포트 해야합니다. 그것은 밑에 있는 방법들을 사용해서 할 수 있습니다.
 - npm: ``npm install web3``
 - yarn: ``yarn add web3``
 - pure js: link the ``dist/web3.min.js``
 
-After that you need to create a web3 instance and set a provider.
-Ethereum supported Browsers like Mist or MetaMask will have a ``ethereumProvider`` or ``web3.currentProvider`` available. For  web3.js, check ``Web3.givenProvider``.
-If this property is ``null`` you should connect to a remote/local node.
+그리고, web3 인스턴스를 만듬과 동시에 web3 provider 를 설정해야합니다.
+이더리움을 지원 하는 브라우저 (Mist / MetaMask)는 ``ethereumProvider`` 또는 ``web3.currentProvider``를 사용할 수 있습니다. web3.js에서 사용할 수 있는 것은 ``web3.givenProvider`` 가 있습니다.
+만약 property 가 ``null`` 이라면, 원격/로컬 노드에 연결해야만 합니다.
 
 .. code-block:: javascript
 
-    // in node.js use: var Web3 = require('web3');
+    // node.js 에서 사용할 때 : var Web3 = require('web3');
 
     var web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 
-That's it! now you can use the ``web3`` object.
+끝입니다! 이제 ``web3`` 오브젝트를 사용할 수 있습니다 !!
