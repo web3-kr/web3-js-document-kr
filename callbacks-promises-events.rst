@@ -25,5 +25,5 @@ PromiEvent 는 일반적인 ``on``, ``once`` and ``off`` 함수가 추가된 pro
     .on('confirmation', function(confNumber, receipt){ ... })
     .on('error', function(error){ ... })
     .then(function(receipt){
-        // will be fired once the receipt is mined
+        // TransactionReceipt 가 발행되면 종료됩니다 
     });
