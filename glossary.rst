@@ -9,44 +9,40 @@ Glossary
 
 ------------------------------------------------------------------------------
 
-json interface
+json 인터페이스
 =====================
 
-The json interface is a json object describing the `Application Binary Interface (ABI) <https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI>`_ for an Ethereum smart contract.
-
-Using this json interface web3.js is able to create JavaScript object representing the smart contract and its methods and events using the :ref:`web3.eth.Contract object <eth-contract>`.
-
+json 인터페이스는 json 오브젝트는 이더리움 스마트 계약을 위한 애플리케이션 바이너리 인터페이스(ABI) https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI를 기술합니다.
+web3.js 에서 json 인터페이스를 사용하기 위해서는, 스마트 컨트렉트에 대한 오브젝트(:ref:`web3.eth.Contract object <eth-contract>`)와, 이에 대한 Method 와 Event 가 필요합니다 
 -------
-Specification
+상세
 -------
 
 Functions:
 
-- ``type``: ``"function"``, ``"constructor"`` (can be omitted, defaulting to ``"function"``; ``"fallback"`` also possible but not relevant in web3.js);
-- ``name``: the name of the function (only present for function types);
-- ``constant``: ``true`` if function is specified to not modify the blockchain state;
-- ``payable``: ``true`` if function accepts ether, defaults to ``false``;
+- ``type``: ``"function"``, ``"constructor"``  (생략가능, ``"fallback"``도 가능합니다)중 선택 가능합니다.;
+- ``name``: 함수의 이름입니다. (함수 타입에만 해당);
+- ``constant``: 블록체인에서 상태를 변경하지 않을때 ``true`` 입니다.;
+- ``payable``: 함수에서 이더리움을 받거나 보낼 수 있을때는 ``true`` ,기본적으로는 ``false`` 입니다.;
 - ``stateMutability``: a string with one of the following values: ``pure`` (specified to not read blockchain state), ``view`` (same as ``constant`` above), ``nonpayable`` and ``payable`` (same as ``payable`` above);
-- ``inputs``: an array of objects, each of which contains:
-
-  - ``name``: the name of the parameter;
-  - ``type``: the canonical type of the parameter.
-- ``outputs``: an array of objects same as ``inputs``, can be omitted if no outputs exist.
+- ``inputs``: 오브젝트의 배열입니다, 각각의 요소는:
+  - ``name``: 파라미터의 이름입니다;
+  - ``type``: 파라미터의 타입입니다;
+- ``outputs``: ``inputs``과 동일한 오브젝트의 배열입니다, 출력이 없을경우 생략이 가능합니다.
 
 Events:
 
-- ``type``: always ``"event"``
-- ``name``: the name of the event;
-- ``inputs``: an array of objects, each of which contains:
-
-  - ``name``: the name of the parameter;
-  - ``type``: the canonical type of the parameter.
-  - ``indexed``: ``true`` if the field is part of the log's topics, ``false`` if it one of the log's data segment.
-- ``anonymous``: ``true`` if the event was declared as ``anonymous``.
+- ``type``: 항상 ``"event"`` 입니다;
+- ``name``: event의 이름입니다;
+- ``inputs``: 
+  - ``name``: 파라미터의 이름입니다;
+  - ``type``: 파라미터의 타입입니다;
+  - ``indexed``: ``true`` 일때는 필드가 로그 주제의 일부인 경우이고, ``false`` 일때는 로그의 데이터 세그먼트일 때 입니다.
+- ``anonymous``: 익명(``anonymous``)으로 선언되어있을때 ``true`` 입니다.
 
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -67,7 +63,7 @@ Example
         }
     }
 
-    // would result in the JSON:
+    // JSON 결과값
     [{
         "type":"constructor",
         "payable":false,
