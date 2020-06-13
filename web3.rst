@@ -3,7 +3,7 @@
 Web3
 ====
 
-This is the main (or 'umbrella') class of the web3.js library.
+이 것은 web3.js library main(또는 'umbrella') class 이다.
 
 .. code-block:: javascript
 
@@ -24,18 +24,18 @@ Web3.modules
 
     Web3.modules
 
-Will return an object with the classes of all major sub modules, to be able to instantiate them manually.
+ object 를 수동으로 인스턴스화 가능하게 object 를 모든 주요 sub modules 의 classes 와 함께 return 한다.
 
 -------
 Returns
 -------
 
-``Object``: A list of module constructors:
-    - ``Eth`` - ``Constructor``: The Eth module for interacting with the Ethereum network see :ref:`web3.eth <eth>` for more.
-    - ``Net`` - ``Constructor``: The Net module for interacting with network properties see :ref:`web3.eth.net <eth-net>` for more.
-    - ``Personal`` - ``Constructor``: The Personal module for interacting with the Ethereum accounts see :ref:`web3.eth.personal <personal>` for more.
-    - ``Shh`` - ``Constructor``: The Shh module for interacting with the whisper protocol see :ref:`web3.shh <shh>` for more.
-    - ``Bzz`` - ``Constructor``: The Bzz module for interacting with the swarm network see :ref:`web3.bzz <bzz>` for more.
+``Object``: module constructors 의 list:
+    - ``Eth`` - ``Constructor``: Ethereum network와 상호작용하기 위한 Eth module 추가정보 :ref:`web3.eth <eth>`
+    - ``Net`` - ``Constructor``: network properties 와 상호작용하기 위한 Net module 추가정보 :ref:`web3.eth.net <eth-net>`
+    - ``Personal`` - ``Constructor``: Ethereum accounts 와 상호작용하기 위한 Personal module 추가정보 :ref:`web3.eth.personal <personal>` for more.
+    - ``Shh`` - ``Constructor``: whisper protocol 과 상호작용하기 위한 Shh module 추가정보 :ref:`web3.shh <shh>`
+    - ``Bzz`` - ``Constructor``: swarm network 와 상호작용하기 위한 Bzz module 추가정보 :ref:`web3.bzz <bzz>`
 
 -------
 Example
@@ -58,13 +58,13 @@ Example
 Web3 Instance
 =============
 
-The Web3 class is an umbrella package to house all Ethereum related modules.
+Web3 class 는 모든 Ethereum 관련 modules 를 담을 수 있는 umbrella package 이다.
 
 .. code-block:: javascript
 
     var Web3 = require('web3');
 
-    // "Web3.providers.givenProvider" will be set if in an Ethereum supported browser.
+    // "Web3.providers.givenProvider" 는 Ethereum 지원 브라우저일 경우 설정된다.
     var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
 
     > web3.eth
@@ -79,14 +79,14 @@ The Web3 class is an umbrella package to house all Ethereum related modules.
 version
 ============
 
-    Static accessible property of the Web3 class and property of the instance as well.
+    Web3 class 의 Static accessible property 및 instance 의 property
 
 .. code-block:: javascript
 
     Web3.version
     web3.version
 
-Contains the current package version of the web3.js library.
+Web3.js library의 current package version 을 포함한다.
 
 -------
 Returns
@@ -111,16 +111,16 @@ Example
 utils
 =====================
 
-    Static accessible property of the Web3 class and property of the instance as well.
+    Web3 class 의 Static accessible property 및 instance 의 property
 
 .. code-block:: javascript
 
     Web3.utils
     web3.utils
 
-Utility functions are also exposes on the ``Web3`` class object directly.
+Utility functions 도 ``Web3`` class object 에 직접 노출된다.
 
-See :ref:`web3.utils <utils>` for more.
+추가정보 :ref:`web3.utils <utils>`
 
 
 ------------------------------------------------------------------------------
