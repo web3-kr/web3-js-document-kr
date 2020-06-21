@@ -4,7 +4,7 @@
 web3.utils
 ========
 
-This package provides utility functions for Ethereum dapps and other web3.js packages.
+해당 package 는 Ethereum dapps 와 다른 web3.js packages 를 위한 utility functions 를 제공한다.
 
 ------------------------------------------------------------------------------
 
@@ -12,23 +12,22 @@ Bloom Filters
 =====================
 
 -----------------------
-What are bloom filters?
+bloom filters 란?
 -----------------------
+Bloom Filter 는 set membership 의 신속한 확인을 위한 확률적이고 공간 효율적인 데이터 구조이다. 그것은 아직 당신에게 큰 의미가 없을 것이다. 그렇기에 Bloom Filters 가 어떻게 사용될 수 있는지 알아본다.
 
-A Bloom filter is a probabilistic, space-efficient data structure used for fast checks of set membership. That probably doesn’t mean much to you yet, and so let’s explore how bloom filters might be used.
+우리가 매우 큰 데이터 세트를 가지고있고, 어떠한 요소가 현재 그 세트 안에 있는지 빠르게 테스트하길 바란다고 가정해보자. 확인을 위한 단순한 방법은 요소가 존재하는지 세트에 query 하는 것일 수도 있다. 그 방법은 데이터 세트가 상대적으로 작다면 아마 괜찮을 것이다. 그러나 만약 데이터 세트가 매우 크다면, 이러한 탐색은 시간이 걸릴 것이다. 다행이도, 우리는 Ethereum 세계에서 속도를 높일 수 있는 방법을 가지고 있다!
 
-Imagine that we have some large set of data, and we want to be able to quickly test if some element is currently in that set. The naive way of checking might be to query the set to see if our element is in there. That’s probably fine if our data set is relatively small. Unfortunately, if our data set is really big, this search might take a while. Luckily, we have tricks to speed things up in the ethereum world!
+Bloom Filter 는 이러한 방법 중 하나이다. Bloom Filter 의 기본 개념은 데이터 세트로 들어가는 각각의 새로운 요소를 해시하고, 이 해시로 부터 특정 비트를 가져온 다음, 그 비트를 사용하여 고정 크기 비트 배열의 일부를 채우는 것이다(예: 특정 비트를 1로 설정). 이 비트 배열을 Bloom Filter 라고 한다.
 
-A bloom filter is one of these tricks. The basic idea behind the Bloom filter is to hash each new element that goes into the data set, take certain bits from this hash, and then use those bits to fill in parts of a fixed-size bit array (e.g. set certain bits to 1). This bit array is called a bloom filter.
+나중에 어떤 요소가 세트에 있는지 확인하고 싶을 때, 우리는 단순히 요소를 해시하고 적절한 비트가 Bloom Filter 에 있는지 확인한다. 비트 중 하나 이상이 0이면 해당 요소가 데이터 집합에 없는 것이 확실하다! 모든 비트가 1이면 요소가 데이터 집합에 있을 수 있지만 실제로 데이터 베이스를 query 하여 확인해야 한다. 그래서 우리는 잘못된 긍정 결과를 얻을 수도 있지만, 결코 잘못된 부정 결과는 얻을 수 없을 것이다. 이 것은 우리가 해야하는 데이터베이스의 query 수를 크게 줄일 수 있다. 
 
-Later, when we want to check if an element is in the set, we simply hash the element and check that the right bits are in the bloom filter. If at least one of the bits is 0, then the element definitely isn’t in our data set! If all of the bits are 1, then the element might be in the data set, but we need to actually query the database to be sure. So we might have false positives, but we’ll never have false negatives. This can greatly reduce the number of database queries we have to make.
+**실제 사례**
 
-**Real Life Example**
-
-A ethereum real life example in where this is useful is if you want to update a users balance on every new block so it stays as close to real time as possible. Without using a bloom filter on every new block you would have to force the balances even if that user may not of had any activity within that block. But if you use the logBlooms from the block you can test the bloom filter against the users ethereum address before you do any more slow operations, this will dramatically decrease the amount of calls you do as you will only be doing those extra operations if that ethereum address is within that block (minus the false positives outcome which will be negligible). This will be highly performant for your app.
+이 것이 유용한 Ethereum 실제 사례의 예로 가능한 한 실시간에 가깝게 유지되도록 모든 새로운 블록에서 사용자 균형을 업데이트 하려는 경우를 들 수 있다. 모든 새로운 블록에 Bloom Filter 를 사용하지 않으면 사용자가 블록 내에서 어떠한 활동도 하지 않더라도 균형을 맞춰야 할 것이다. 그러나 블록의 logBlooms 를 사용하면 더 느린 작업을 수행하기 전에 사용자들의 ethereum 주소에 대해 Bloom Filter 를 테스트 할 수 있으며, 이는 해당 ethereum 주소가 해당 블록 내에 있는 경우에만 추가 작업을 수행하므로(잘못된 긍정 결과를 최소화하여) 통신량을 크게 줄일 수 있다. 이 것은 당신의 앱에 매우 효과적일 것이다.
 
 ---------
-Functions
+기능
 ---------
 
 - `web3.utils.isBloom <https://github.com/joshstevens19/ethereum-bloom-filters/blob/master/README.md#isbloom>`_
@@ -39,7 +38,7 @@ Functions
 - `web3.utils.isInBloom <https://github.com/joshstevens19/ethereum-bloom-filters/blob/master/README.md#isinbloom>`_
 
 
-.. note:: Please raise any issues `here <https://github.com/joshstevens19/ethereum-bloom-filters/issues>`_
+.. note:: 이슈 제기는 `여기 <https://github.com/joshstevens19/ethereum-bloom-filters/issues>`_
 
 
 ------------------------------------------------------------------------------
@@ -51,22 +50,22 @@ randomHex
 
     web3.utils.randomHex(size)
 
-The `randomHex <https://github.com/frozeman/randomHex>`_ library to generate cryptographically strong pseudo-random HEX strings from a given byte size.
+주어진 바이트 크기에서 의사 난수로 강력하게 암호화된 HEX 문자열을 생성하기 위한  `randomHex <https://github.com/frozeman/randomHex>`_ 라이브러리.
 
 ----------
-Parameters
+parameters
 ----------
 
-1. ``size`` - ``Number``: The byte size for the HEX string, e.g. ``32`` will result in a 32 bytes HEX string with 64 characters preficed with "0x".
+1. ``size`` - ``Number``: HEX 문자열에 대한 바이트 크기, 예를 들어 ``32``는 "0x"로 미리 만들어진 64자의 HEX 문자열을 32바이트로 만든다.
 
 -------
 Returns
 -------
 
-``String``: The generated random HEX string.
+``String``: 무작위로 생성된 HEX 문자열.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -98,12 +97,12 @@ _
 
     web3.utils._()
 
-The `underscore <http://underscorejs.org>`_ library for many convenience JavaScript functions.
+많은 편리한 JavaScript 기능들을 위한 `underscore <http://underscorejs.org>`_ 라이브러리 
 
-See the `underscore API reference <http://underscorejs.org>`_ for details.
+세부정보 `underscore API reference <http://underscorejs.org>`_ 
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
