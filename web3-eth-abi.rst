@@ -4,8 +4,7 @@
 web3.eth.abi
 =========
 
-The ``web3.eth.abi`` functions let you de- and encode parameters to ABI (Application Binary Interface) for function calls to the EVM (Ethereum Virtual Machine).
-
+``web3.eth.abi '' 를 사용하면 EVM (Ethereum Virtual Machine)에 대한 함수 호출을 위해 매개 변수를 ABI (Application Binary Interface)로 디코딩 및 인코딩 할 수 있습니다.
 
 
 ------------------------------------------------------------------------------
@@ -18,23 +17,22 @@ encodeFunctionSignature
 
     web3.eth.abi.encodeFunctionSignature(functionName);
 
-Encodes the function name to its ABI signature, which are the first 4 bytes of the sha3 hash of the function name including types.
-
+함수 이름과 함수 타입의 첫 4 바이트를 sha3를 통해 ABI 서명(ABI Signiture)로 인코딩합니다.
 ----------
-Parameters
+인자(Parameters)
 ----------
 
-1. ``functionName`` - ``String|Object``: The function name to encode.
+1. ``functionName`` - ``String|Object``: 인코딩 할 함수의 이름입니다
 or the :ref:`JSON interface <glossary-json-interface>` object of the function. If string it has to be in the form ``function(type,type,...)``, e.g: ``myFunction(uint256,uint32[],bytes10,bytes)``
 
 -------
-Returns
+반환값
 -------
 
 ``String`` - The ABI signature of the function.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -70,20 +68,20 @@ encodeEventSignature
 Encodes the event name to its ABI signature, which are the sha3 hash of the event name including input types.
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
 1. ``eventName`` - ``String|Object``: The event name to encode.
 or the :ref:`JSON interface <glossary-json-interface>` object of the event. If string it has to be in the form ``event(type,type,...)``, e.g: ``myEvent(uint256,uint32[],bytes10,bytes)``
 
 -------
-Returns
+반환값
 -------
 
-``String`` - The ABI signature of the event.
+``String`` - 이벤트의 ABI 서명.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -91,7 +89,7 @@ Example
     web3.eth.abi.encodeEventSignature('myEvent(uint256,bytes32)')
     > 0xf2eeb729e636a8cb783be044acf6b7b1e2c5863735b60d6daae84c366ee87d97
 
-    // or from a json interface object
+    // json 인터페이스 오브젝트에서
     web3.eth.abi.encodeEventSignature({
         name: 'myEvent',
         type: 'event',
@@ -115,23 +113,23 @@ encodeParameter
 
     web3.eth.abi.encodeParameter(type, parameter);
 
-Encodes a parameter based on its type to its ABI representation.
+유형에 따라 매개 변수를 ABI 표현으로 인코딩합니다.
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
-1. ``type`` - ``String|Object``: The type of the parameter, see the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``parameter`` - ``Mixed``: The actual parameter to encode.
+1. ``type`` - ``String|Object``: 매개 변수의 유형은 유형 목록은`solidity 문서 <http://solidity.readthedocs.io/en/develop/types.html>`_ 를 참조하십시오.
+2. ``parameter`` - ``Mixed``: 인코딩 할 실제 매개 변수입니다.
 
 -------
-Returns
+반환값
 -------
 
-``String`` - The ABI encoded parameter.
+``String`` - ABI 인코딩된 매개 변수입니다.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -181,23 +179,22 @@ encodeParameters
 
     web3.eth.abi.encodeParameters(typesArray, parameters);
 
-Encodes a function parameters based on its :ref:`JSON interface <glossary-json-interface>` object.
-
+:ref:`JSON interface <glossary-json-interface>` 오브젝트를 기반으로 함수 매개 변수를 인코딩합니다.
 ----------
-Parameters
+인자(Parameters)
 ----------
 
 1. ``typesArray`` - ``Array<String|Object>|Object``: An array with types or a :ref:`JSON interface <glossary-json-interface>` of a function. See the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``parameters`` - ``Array``: The parameters to encode.
+2. ``parameters`` - ``Array``: 인코딩 할 매개 변수입니다.
 
 -------
-Returns
+반환값
 -------
 
-``String`` - The ABI encoded parameters.
+``String`` - ABI 인코딩 된 매개 변수.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -245,23 +242,22 @@ encodeFunctionCall
 
     web3.eth.abi.encodeFunctionCall(jsonInterface, parameters);
 
-Encodes a function call using its :ref:`JSON interface <glossary-json-interface>` object and given paramaters.
-
+:ref:`JSON interface <glossary-json-interface>` 오브젝트 와 주어진 매개 변수를 사용하여 함수 호출을 인코딩합니다.
 ----------
-Parameters
+인자(Parameters)
 ----------
 
 1. ``jsonInterface`` - ``Object``: The :ref:`JSON interface <glossary-json-interface>` object of a function.
-2. ``parameters`` - ``Array``: The parameters to encode.
+2. ``parameters`` - ``Array``: 인코딩 할 매개 변수입니다.
 
 -------
-Returns
+반환값
 -------
 
-``String`` - The ABI encoded function call. Means function signature + parameters.
-
+``String`` - ABI 인코딩된 함수를 호출합니다. 이는 함수의 서명과 인자를 뜻합니다.
+[TODO] => The ABI encoded function call. Means function signature + parameters. 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -288,23 +284,23 @@ decodeParameter
 
     web3.eth.abi.decodeParameter(type, hexString);
 
-Decodes an ABI encoded parameter to its JavaScript type.
+ABI 인코딩 매개 변수를 JavaScript에서 사용 가능한 타입으로 디코딩합니다.
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
 1. ``type`` - ``String|Object``: The type of the parameter, see the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``hexString`` - ``String``: The ABI byte code to decode.
+2. ``hexString`` - ``String``: 디코딩 할 ABI 바이트 코드입니다.
 
 -------
-Returns
+반환값
 -------
 
-``Mixed`` - The decoded parameter.
+``Mixed`` - 디코딩 된 매개 변수.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -379,23 +375,22 @@ decodeParameters
 
     web3.eth.abi.decodeParameters(typesArray, hexString);
 
-Decodes ABI encoded parameters to its JavaScript types.
-
+ABI 인코딩 매개 변수를 JavaScript에서 사용 가능한 타입으로 디코딩합니다.
 ----------
-Parameters
+인자(Parameters)
 ----------
 
 1. ``typesArray`` - ``Array<String|Object>|Object``: An array with types or a :ref:`JSON interface <glossary-json-interface>` outputs array. See the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``hexString`` - ``String``: The ABI byte code to decode.
+2. ``hexString`` - ``String``: 디코딩 할 ABI 바이트 코드입니다.
 
 -------
-Returns
+반환값
 -------
 
-``Object`` - The result object containing the decoded parameters.
+``Object`` - 디코딩 된 매개 변수를 포함하는 결과 오브젝트입니다.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -464,10 +459,10 @@ decodeLog
 
     web3.eth.abi.decodeLog(inputs, hexString, topics);
 
-Decodes ABI encoded log data and indexed topic data.
+ABI 인코딩 된 로그 데이터 및 인덱싱 된 토픽 데이터를 디코딩합니다.
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
 1. ``inputs`` - ``Object``: A :ref:`JSON interface <glossary-json-interface>` inputs array. See the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
@@ -475,13 +470,13 @@ Parameters
 3. ``topics`` - ``Array``: An array with the index parameter topics of the log, without the topic[0] if its a non-anonymous event, otherwise with topic[0].
 
 -------
-Returns
+반환값
 -------
 
-``Object`` - The result object containing the decoded parameters.
+``Object`` - 디코딩 된 매개 변수를 포함하는 결과 오브젝트 입니다.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
