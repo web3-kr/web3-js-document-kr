@@ -4,19 +4,19 @@
 web3.bzz
 ========
 
-.. note:: This API might change over time.
+.. 노트 ::이 API는 시간이 완전히 완성된 것이 아니므로, 추후 변경 될 수 있습니다.
 
 
-The ``web3-bzz`` package allows you to interact swarm the decentralized file store.
-For more see the `Swarm Docs <http://swarm-guide.readthedocs.io/en/latest/>`_.
+``web3-bzz`` 는 탈중앙화된 파일 저장을 위해 Swarm을 사용할 수 있게 해줍니다.
+자세한 정보는 `Swarm 문서 <http://swarm-guide.readthedocs.io/en/latest/>`_ 를 참고하세요.
 
 
 .. code-block:: javascript
 
     var Bzz = require('web3-bzz');
 
-    // will autodetect if the "ethereum" object is present and will either connect to the local swarm node, or the swarm-gateways.net.
-    // Optional you can give your own provider URL; If no provider URL is given it will use "http://swarm-gateways.net"
+    // "ethereum" 객체(Objcet)가 있는지 자동 감지하여 로컬 swarm 노드 또는 swarm-gateways.net에 연결합니다.    
+    // 옵션으로 자신의 프로바이더 URL을 제공 할 수 있습니다. 프로바이더 URL이 제공되지 않으면 기본적으로 "http://swarm-gateways.net"을 사용합니다.
     var bzz = new Bzz(Bzz.givenProvider || 'http://swarm-gateways.net');
 
 
@@ -27,7 +27,7 @@ For more see the `Swarm Docs <http://swarm-guide.readthedocs.io/en/latest/>`_.
 
     // -> web3.bzz.currentProvider // if Web3.givenProvider was an ethereum provider it will set: "http://localhost:8500" otherwise it will set: "http://swarm-gateways.net"
 
-    // set the provider manually if necessary
+    // 필요한 경우 프로바이더를 수동으로 설정
     web3.bzz.setProvider("http://localhost:8500");
 
 
@@ -43,22 +43,23 @@ setProvider
 
 Will change the provider for its module.
 
-.. note:: When called on the umbrella package ``web3`` it will also set the provider for all sub modules ``web3.eth``, ``web3.shh``, etc EXCEPT ``web3.bzz`` which needs a separate provider at all times.
+.. note:: umbrella 패키지``web3 ''에서 호출되면 별도로 제공 해야하는``web3.bzz`` 를 제외한 모든 하위 모듈``web3.eth '',``web3.shh ''에 대한 프로바이더를 설정합니다.
+
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
-1. ``Object`` - ``myProvider``: :ref:`a valid provider <web3-providers>`.
+1. ``Object`` - ``myProvider``: :ref:`유효한 프로바이더 <web3-providers>`.
 
 -------
-Returns
+반환값
 -------
 
 ``Boolean``
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -66,7 +67,7 @@ Example
     var Bzz = require('web3-bzz');
     var bzz = new Bzz('http://localhost:8500');
 
-    // change provider
+    // 프로바이더를 변경합니다.
     bzz.setProvider('http://swarm-gateways.net');
 
 
@@ -79,18 +80,18 @@ givenProvider
 
     web3.bzz.givenProvider
 
-When using web3.js in an Ethereum compatible browser, it will set with the current native provider by that browser.
-Will return the given provider by the (browser) environment, otherwise ``null``.
+Ethereum 호환 브라우저에서 web3.js를 사용하면 해당 브라우저에서 현재 기본 프로바이더로 설정됩니다.
+브라우저 환경에서 지정된 공급자를 반환하지 않으면 ``null`` 을 반환합니다.
 
 
 -------
-Returns
+반환값
 -------
 
-``Object``: The given provider set or ``null``;
+``Object``: 설정된 프로바이더 또는 ``null``;
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -117,17 +118,16 @@ currentProvider
 
     bzz.currentProvider
 
-Will return the current provider URL, otherwise ``null``.
-
+위 함수는 현재의 프로바이더 URL을 제공합니다. 프로바이더가 없을 경우 ``null`` 을 반환합니다.
 
 -------
-Returns
+반환값
 -------
 
 ``Object``: The current provider URL or ``null``;
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -151,48 +151,49 @@ upload
 
    web3.bzz.upload(mixed)
 
-Uploads files folders or raw data to swarm.
+파일, 폴더 또는 raw 데이터를 swarm에 업로드합니다.
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
-1. ``mixed`` - ``String|Buffer|Uint8Array|Object``: The data to upload, can be a file content, file Buffer/Uint8Array, multiple files, or a directory or file (only in node.js). The following types are allowed:
-    - ``String|Buffer|Uint8Array``: A file content, file Uint8Array or Buffer to upload, or:
+1. ``mixed`` - ``String|Buffer|Uint8Array|Object``: 파일 내용은 Buffer / Uint8Array 로 업로드 가능합니다, 여러 파일 또는 디렉토리 또는 파일에는 다음 유형이 허용됩니다(node.js에서만 가능).
+    - ``String|Buffer|Uint8Array``: 업로드 할 파일 내용, Uint8Array 또는 Buffer 입니다.
+
     - ``Object``:
-        1. Multiple key values for files and directories. The paths will be kept the same:
-            - key must be the files path, or name, e.g. ``"/foo.txt"`` and its value is an object with:
-                - ``type``: The mime-type of the file, e.g. ``"text/html"``.
-                - ``data``: A file content, file Uint8Array or Buffer to upload.
-        2. Upload a file or a directory from disk in Node.js. Requires and object with the following properties:
-            - ``path``: The path to the file or directory.
-            - ``kind``: The type of the source ``"directory"``, ``"file"`` or ``"data"``.
-            - ``defaultFile`` (optional): Path of the "defaultFile" when ``"kind": "directory"``, e.g. ``"/index.html"``.
-        3. Upload file or folder in the browser. Requres and object with the following properties:
-            - ``pick``: The file picker to launch. Can be ``"file"``, ``"directory"`` or ``"data"``.
+        1. 파일과 디렉토리에 대한 여러 키 값. 경로는 동일하게 유지됩니다.
+                -키는 파일 경로 또는 이름이어야합니다 (예 : `` "/foo.txt"``이며 그 값은 다음과 같은 객체입니다.)
+                 -``type '': 파일의 MIME 유형 (예 : `` "text / html"``).
+                 -``data '': 업로드 할 파일 내용, 파일 Uint8Array 또는 Buffer.
+         2. Node.js의 디스크에서 파일 또는 디렉토리를 업로드하십시오. 다음 속성이 필요합니다..
+             -``경로 '': 파일 또는 디렉토리의 경로입니다.
+             -``kind '': `` "directory" '',`` "file" ''또는`` "data"`` 3가지 유형으로 나누어집니다..
+             -``defaultFile ''(선택 사항) : "directory" 일 때 "defaultFile"의 경로 (예 : `` "/index.html"``.)
+         3. 브라우저에서 파일 또는 폴더를 업로드하십시오.
+             -``pick '': 시작할 파일 선택기. `` "file"``,`` "directory" ''또는`` "data"``를 사용할 수 있습니다.
+
+-------
+반환값
+-------
+
+``Promise`` returning ``String``: 매니페스트의 콘텐츠 해시를 반환합니다.
+
 
 
 -------
-Returns
--------
-
-``Promise`` returning ``String``: Returns the content hash of the manifest.
-
-
--------
-Example
+예제
 -------
 
 .. code-block:: javascript
 
     var bzz = web3.bzz;
 
-    // raw data
+    // raw 데이터
     bzz.upload("test file").then(function(hash) {
         console.log("Uploaded file. Address:", hash);
     })
 
-    // raw directory
+    // raw 폴더
     var dir = {
         "/foo.txt": {type: "text/plain", data: "sample file"},
         "/bar.txt": {type: "text/plain", data: "another file"}
@@ -201,17 +202,18 @@ Example
         console.log("Uploaded directory. Address:", hash);
     });
 
-    // upload from disk in node.js
+    // 노드에서 디스크 파일 업로드하기
     bzz.upload({
-        path: "/path/to/thing",      // path to data / file / directory
-        kind: "directory",           // could also be "file" or "data"
-        defaultFile: "/index.html"   // optional, and only for kind === "directory"
+        path: "/path/to/thing",      // 업로드할 경로
+        kind: "directory",           // 파일인지, 폴더인지 구분 ('file','directory')
+        defaultFile: "/index.html"   // 선택적이며 "directory" 에 대해서만 사용 가능한 인자. 
+
     })
     .then(console.log)
     .catch(console.log);
 
-    // upload from disk in the browser
-    bzz.upload({pick: "file"}) // could also be "directory" or "data"
+    // 브라우저에서 디스크 파일 업로드
+    bzz.upload({pick: "file"}) // 파일인지, 폴더인지 구분 ('file','directory')
     .then(console.log);
 
 ------------------------------------------------------------------------------
@@ -223,37 +225,36 @@ download
 
    web3.bzz.download(bzzHash [, localpath])
 
-Downloads files and folders from swarm, as buffer or to disk (only node.js).
-
+swarm에서 파일 또는 폴더를 버퍼로 또는 디스크로 다운로드합니다 (node.js 에만 해당).
 ----------
 Parameters
 ----------
 
-1. ``bzzHash`` - ``String``: The file or directory to download. If the hash is a raw file it will return a Buffer, if a manifest file, it will return the directory structure. If the ``localpath`` is given, it will return that path where it downloaded the files to.
-2. ``localpath`` - ``String``: The local folder to download the content into. (only node.js)
+1. ``bzzHash`` - ``String``: 다운로드 할 파일 또는 디렉토리입니다. 해시가 원시 파일 인 경우 버퍼를 반환하고 매니페스트 파일 인 경우 디렉토리 구조를 반환합니다. ``localpath ''가 주어지면 파일을 다운로드 한 경로를 반환합니다.
+2. ``localpath`` - ``String``: 컨텐츠를 다운로드 할 로컬 폴더입니다. (node.js 만)
 
 -------
-Returns
+반환값
 -------
 
-``Promise`` returning ``Buffer|Object|String``: The Buffer of the file downloaded, an object with the directory structure, or the path where it was downloaded to.
+``Promise`` returning ``Buffer|Object|String``: 다운로드 한 파일의 버퍼, 디렉토리 구조의 오브젝트 또는 다운로드 된 경로.
 
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
 
     var bzz = web3.bzz;
 
-    // download raw file
+// raw 파일 다운로드
     var fileHash = "a5c10851ef054c268a2438f10a21f6efe3dc3dcdcc2ea0e6a1a7a38bf8c91e23";
     bzz.download(fileHash).then(function(buffer) {
         console.log("Downloaded file:", buffer.toString());
     });
 
-    // download directory, if the hash is manifest file.
+// 해시가 매니페스트 파일 인 경우 디렉토리를 다운로드
     var dirHash = "7e980476df218c05ecfcb0a2ca73597193a34c5a9d6da84d54e295ecd8e0c641";
     bzz.download(dirHash).then(function(dir) {
         console.log("Downloaded directory:");
@@ -263,7 +264,7 @@ Example
         }
     });
 
-    // download file/directory to disk (only node.js)
+// 파일 / 디렉토리를 디스크로 다운로드 (node.js 에서만 사용가능)
     var dirHash = "a5c10851ef054c268a2438f10a21f6efe3dc3dcdcc2ea0e6a1a7a38bf8c91e23";
     bzz.download(dirHash, "/target/dir")
     .then(path => console.log(`Downloaded directory to ${path}.`))
@@ -282,22 +283,22 @@ pick
    web3.bzz.pick.directory()
    web3.bzz.pick.data()
 
-Opens a file picker in the browser to select file(s), directory or data.
+브라우저에서 파일 선택기를 열어 파일, 디렉토리 또는 데이터를 선택합니다.
 
 ----------
-Parameters
+인자(Parameters)
 ----------
 
-none
+없음
 
 -------
-Returns
+반환값
 -------
 
-``Promise`` returning ``Object``: Returns the file or multiple files.
+``Promise`` returning ``Object``: 파일 또는 여러 파일을 반환합니다.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
