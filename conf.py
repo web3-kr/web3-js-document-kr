@@ -243,7 +243,7 @@ latex_elements = {
     '\usepackage[utf8x]{inputenc}',
     '\documentclass{article}',
     '\usepackage{kotex}',
-    ))
+    ))}
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
