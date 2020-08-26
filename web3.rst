@@ -27,7 +27,7 @@ Web3.modules
  object 를 수동으로 인스턴스화 가능하게 object 를 모든 주요 sub modules 의 classes 와 함께 return 한다.
 
 
-이것은 모든 주요 하위 모듈의 클래스와 함께 객체를 반환하여 수동으로 인스턴스화 할 수 있게 해줍니다..
+이것은 모든 주요 하위 모듈의 클래스와 함께 객체를 반환하여 수동으로 인스턴스화 할 수 있게 해줍니다.
 -------
 반환값
 -------
@@ -62,7 +62,7 @@ Web3.modules
 Web3 인스터스 (Instance)
 =============
 
-Web3 class 는 모든 Ethereum 관련 modules 를 담을 수 있는 umbrella package 이다.
+Web3 class 는 모든 Ethereum 관련 modules 를 담을 수 있는 umbrella package 입니다.
 
 .. code-block:: javascript
 
