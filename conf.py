@@ -238,12 +238,12 @@ htmlhelp_basename = 'web3jsdoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-        # Additional stuff for the LaTeX preamble.
-        'preamble': "".join((
-        '\usepackage[utf8x]{inputenc}',
-        '\documentclass{article}',
-        '\usepackage{kotex}',
-        ))
+    # Additional stuff for the LaTeX preamble.
+    'preamble': "".join((
+    '\usepackage[utf8x]{inputenc}',
+    '\documentclass{article}',
+    '\usepackage{kotex}',
+    ))
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
