@@ -11,25 +11,24 @@ setProvider
     web3.bzz.setProvider(myProvider)
     ...
 
-Will change the provider for its module.
-
+해당 모듈의 web3 Provider를 변경 또는 설정 합니다.
 .. note::
-    When called on the umbrella package ``web3`` it will also set the provider for all sub modules ``web3.eth``, ``web3.shh``, etc EXCEPT ``web3.bzz`` which needs a separate provider at all times.
+``web3.eth``, ``web3.shh`` 등등과 같은 모든 하위 모듈에 대해 동일한 Provider가 설정됩니다. ``web3.bzz`` 는 분리된 provider가 예외적으로 적용됩니다.
 
 ----------
-Parameters
+매개변수(Parameters)
 ----------
 
-1. ``Object`` - ``myProvider``: :ref:`a valid provider <web3-providers>`.
+1. ``Object`` - ``myProvider``: :ref:Provider를 검증합니다. <web3-providers>`.
 
 -------
-Returns
+반환값 (Return)
 -------
 
 ``Boolean``
 
 -------
-Example
+예시 (Example)
 -------
 
 .. code-block:: javascript
@@ -39,23 +38,27 @@ Example
     // or
     var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
-    // change provider
+    // provider를 변경합니다.
     web3.setProvider('ws://localhost:8546');
-    // or
+
+    // 또는
+
     web3.setProvider(new Web3.providers.WebsocketProvider('ws://localhost:8546'));
 
-    // Using the IPC provider in node.js
+    // node.js 에서 IPC Provider를 사용합니다.
     var net = require('net');
-    var web3 = new Web3('/Users/myuser/Library/Ethereum/geth.ipc', net); // mac os path
-    // or
-    var web3 = new Web3(new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net)); // mac os path
-    // on windows the path is: "\\\\.\\pipe\\geth.ipc"
-    // on linux the path is: "/users/myuser/.ethereum/geth.ipc"
+    var web3 = new Web3('/Users/myuser/Library/Ethereum/geth.ipc', net); // mac os 의 경로
+
+    // 또는
+
+    var web3 = new Web3(new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net)); // mac os 경로
+    // 윈도우의 경로 : "\\\\.\\pipe\\geth.ipc"
+    // 리눅스의 경로: "/users/myuser/.ethereum/geth.ipc"
 
 
 ------------------------------------------------------------------------------
 
-providers
+providers(프로바이더)
 =====================
 
 .. code-block:: javascript
@@ -66,20 +69,19 @@ providers
     web3.bzz.providers
     ...
 
-Contains the current available :ref:`providers <web3-providers>`.
-
+:ref:`providers <web3-providers>` 를 포함하고 있습니다.
 ----------
-Value
+결과 값
 ----------
 
 ``Object`` with the following providers:
 
-    - ``Object`` - ``HttpProvider``: The HTTP provider is **deprecated**, as it won't work for subscriptions.
-    - ``Object`` - ``WebsocketProvider``: The Websocket provider is the standard for usage in legacy browsers.
+    - ``Object`` - ``HttpProvider``: The HTTP provider is **deprecated**, as it won't work for subscriptions. http 프로바이더는 **더이상 사용되지 않게** 되었습니다. 이것은 구독에 사용할 수 없을 것 입니다.
+    - ``Object`` - ``WebsocketProvider``: The Websocket provider is the standard for usage in legacy browsers. ``WebSocketProvider``: 웹소켓 프로바이더는 레거시 브라우저으
     - ``Object`` - ``IpcProvider``: The IPC provider is used node.js dapps when running a local node. Gives the most secure connection.
 
 -------
-Example
+예제
 -------
 
 .. code-block:: javascript
@@ -100,7 +102,7 @@ Example
     // on linux the path is: "/users/myuser/.ethereum/geth.ipc"
 
 -------------
-Configuration
+설정하기
 -------------
 
 .. code-block:: javascript
@@ -177,7 +179,7 @@ givenProvider
 .. code-block:: javascript
 
     web3.givenProvider
-    web3.eth.givenProvider
+    web3.eth.   
     web3.shh.givenProvider
     web3.bzz.givenProvider
     ...
