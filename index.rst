@@ -14,9 +14,10 @@ Web3.js는 로컬 환경 또는 원격 환경의 이더리움 노드와 HTTP 또
    :maxdepth: 2
    :caption: 시작하기
 
-   바로 시작하기
+   바로 시작하기 <getting-started>
+   web3.js 실행과 설치하기 <adding-web3>
    callbacks-promises-events
-   용어 안내
+   용어 안내 <glossary>
 
 
 .. toctree::

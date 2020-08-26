@@ -18,7 +18,6 @@ Web3
 
 Web3.modules
 =====================
-
 .. code-block:: javascript
 
     Web3.modules
