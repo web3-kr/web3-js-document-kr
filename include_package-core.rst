@@ -19,7 +19,7 @@ setProvider
 매개변수(Parameters)
 ----------
 
-1. ``Object`` - ``myProvider``: :ref:Provider를 검증합니다. <web3-providers>`.
+1. ``Object`` - ``myProvider``: :ref:Provider를 검증합니다. <web3-providers>.
 
 -------
 반환값 (Return)
@@ -28,14 +28,14 @@ setProvider
 ``Boolean``
 
 -------
-예시 (Example)
+예시 (예시 (Example))
 -------
 
 .. code-block:: javascript
 
     var Web3 = require('web3');
     var web3 = new Web3('http://localhost:8545');
-    // or
+    // 또는
     var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
     // provider를 변경합니다.
@@ -71,23 +71,24 @@ providers(프로바이더)
 
 :ref:`providers <web3-providers>` 를 포함하고 있습니다.
 ----------
-결과 값
+반환값 (Return)
 ----------
 
 ``Object`` with the following providers:
 
-    - ``Object`` - ``HttpProvider``: The HTTP provider is **deprecated**, as it won't work for subscriptions. http 프로바이더는 **더이상 사용되지 않게** 되었습니다. 이것은 구독에 사용할 수 없을 것 입니다.
-    - ``Object`` - ``WebsocketProvider``: The Websocket provider is the standard for usage in legacy browsers. ``WebSocketProvider``: 웹소켓 프로바이더는 레거시 브라우저으
-    - ``Object`` - ``IpcProvider``: The IPC provider is used node.js dapps when running a local node. Gives the most secure connection.
+    - ``Object`` - ``HttpProvider``:http 프로바이더는 **더이상 사용되지 않게** 되었습니다. 이것은 구독에 사용할 수 없을 것 입니다.
+    - ``Object`` - ``WebsocketProvider``: 웹 소켓 프로바이더는 레거시 브라우저에 대한 표준입니다.
+    - ``Object`` - ``IpcProvider``: IPC 프로바이더는 로컬노드를 사용하는 nodejs Dapp에 대한 표준입니다. 가장 안전한 연결을 제공합니다.
 
 -------
-예제
+예시 (예시 (Example))
 -------
 
 .. code-block:: javascript
 
     var Web3 = require('web3');
     // use the given Provider, e.g in Mist, or instantiate a new websocket provider
+    //
     var web3 = new Web3(Web3.givenProvider || 'ws://remotenode.com:8546');
     // or
     var web3 = new Web3(Web3.givenProvider || new Web3.providers.WebsocketProvider('ws://remotenode.com:8546'));
@@ -135,7 +136,7 @@ providers(프로바이더)
     var provider = new Web3HttpProvider('http://localhost:8545', options);
 
     // ==========
-    // Websockets
+    // 웹소켓
     // ==========
 
     var Web3WsProvider = require('web3-providers-ws');
@@ -143,18 +144,18 @@ providers(프로바이더)
     var options = {
         timeout: 30000, // ms
 
-        // Useful for credentialed urls, e.g: ws://username:password@localhost:8546
+        // 크레덴셜을 url에 포함해서 사용할 수 있습니다 ex: ws://username:password@localhost:8546
         headers: {
           authorization: 'Basic username:password'
         },
 
-        // Useful if requests result are large
+        // 만약 결과값이 크다면 사용할 수 있습니다.
         clientConfig: {
           maxReceivedFrameSize: 100000000,   // bytes - default: 1MiB
           maxReceivedMessageSize: 100000000, // bytes - default: 8MiB
         },
 
-        // Enable auto reconnection
+        // 자동 재연결 활성화 
         reconnect: {
             auto: true,
             delay: 5000, // ms
@@ -166,8 +167,7 @@ providers(프로바이더)
     var ws = new Web3WsProvider('ws://localhost:8546', options);
 
 
-More information for the Http and Websocket provider modules can be found here:
-
+HTTP 와 Websocket 프로바이더에 대한 정보를 더 얻으려면 밑에 링크를 참고할 수 있습니다.
     - `HttpProvider <https://github.com/ethereum/web3.js/tree/1.x/packages/web3-providers-http#usage>`_
     - `WebsocketProvider <https://github.com/ethereum/web3.js/tree/1.x/packages/web3-providers-ws#usage>`_
 
@@ -184,18 +184,17 @@ givenProvider
     web3.bzz.givenProvider
     ...
 
-When using web3.js in an Ethereum compatible browser, it will set with the current native provider by that browser.
-Will return the given provider by the (browser) environment, otherwise ``null``.
-
-
--------
-Returns
--------
-
-``Object``: The given provider set or ``null``;
+이더리움 호환 브라우저에서 web3.js 를 사용하면, 이 함수는 해당 브라우저의 네이티브 프로바이더를 반환합니다. 
+호환 브라우저가 아닐 경우, ``null`` 을 반환합니다.
 
 -------
-Example
+반환값 (Returns)
+-------
+
+``Object``: 설정된 givenProvider 또는 ``null``.;
+
+-------
+예시 (Example)
 -------
 
 .. code-block:: javascript
@@ -215,17 +214,16 @@ currentProvider
     web3.bzz.currentProvider
     ...
 
-Will return the current provider, otherwise ``null``.
-
-
--------
-Returns
--------
-
-``Object``: The current provider set or ``null``;
+현재 provider 또는 ``null`` 을 반환합니다
 
 -------
-Example
+반환값 (Returns)
+-------
+
+``Object``: 현재 설정된 프로바이더 또는 ``null``;
+
+-------
+예시 (Example)
 -------
 
 .. code-block:: javascript
@@ -245,25 +243,24 @@ BatchRequest
     new web3.shh.BatchRequest()
     new web3.bzz.BatchRequest()
 
-Class to create and execute batch requests.
-
+Batch 요청을 만들고 실행하는 클래스 입니다.
 ----------
-Parameters
+인자 (Parameters)
 ----------
 
-none
+없음
 
 -------
-Returns
+반환값 (Returns)
 -------
 
-``Object``: With the following methods:
+``Object``: 밑에 두 메소드로 이루어져 있습니다:
 
-    - ``add(request)``: To add a request object to the batch call.
-    - ``execute()``: Will execute the batch request.
+    - ``add(request)``: batch call에 요청 오브젝트를 추가합니다.
+    - ``execute()``: batch 요청을 실행합니다.
 
 -------
-Example
+예시 (Example)
 -------
 
 .. code-block:: javascript
@@ -289,32 +286,30 @@ extend
     web3.bzz.extend(methods)
     ...
 
-Allows extending the web3 modules.
-
-.. note:: You also have ``*.extend.formatters`` as additional formatter functions to be used for in and output formatting. Please see the `source file <https://github.com/ethereum/web3.js/blob/master/packages/web3-core-helpers/src/formatters.js>`_ for function details.
+web3 모듈을 확장할 수 있게 합니다.
 
 ----------
-Parameters
+인자
 ----------
 
-1. ``methods`` - ``Object``: Extension object with array of methods description objects as follows:
-    - ``property`` - ``String``: (optional) The name of the property to add to the module. If no property is set it will be added to the module directly.
-    - ``methods`` - ``Array``: The array of method descriptions:
-        - ``name`` - ``String``: Name of the method to add.
-        - ``call`` - ``String``: The RPC method name.
-        - ``params`` - ``Number``: (optional) The number of parameters for that function. Default 0.
-        - ``inputFormatter`` - ``Array``: (optional) Array of inputformatter functions. Each array item responds to a function parameter, so if you want some parameters not to be formatted, add a ``null`` instead.
-        - ``outputFormatter - ``Function``: (optional) Can be used to format the output of the method.
+1. ``methods`` - ``Object``: 메서드 배열이 있는 확장 개체에서는 개체를 아래와 같이 설명한다:
+    - ``property`` - ``String``: (optional) 모듈에 추가할 속성의 이름. 설정된 속성이 없는 경우 모듈에 직접 추가됨.
+    - ``methods`` - ``Array``: 메서드 설명 배열
+        - ``name`` - ``String``: 추가할 메서드의 이름.
+        - ``call`` - ``String``: RPC 메서드의 이름.
+        - ``params`` - ``Number``: (optional) 함수에 대한 파라미터의 갯수, 기본값은 0.
+        - ``inputFormatter`` - ``Array``: (optional) 입력 포맷터 함수 배열. 각 어레이 항목은 함수 매개 변수에 응답하므로 일부 매개 변수를 포맷하지 않으려면 대신 ``null`` 을 추가하세요.
+        - ``outputFormatter - ``Function``: (optional) 메서드의 출력을 포맷하는 데 사용할 수 있다.
 
 
 ----------
-Returns
+반환값 (Returns)
 ----------
 
-``Object``: The extended module.
+``Object``: 확장 모듈을 반환합니다.
 
 -------
-Example
+예시 (Example)
 -------
 
 .. code-block:: javascript
