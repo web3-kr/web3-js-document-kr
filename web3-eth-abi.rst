@@ -4,7 +4,7 @@
 web3.eth.abi
 =========
 
-``web3.eth.abi '' 를 사용하면 EVM (Ethereum Virtual Machine)에 대한 함수 호출을 위해 매개 변수를 ABI (Application Binary Interface)로 디코딩 및 인코딩 할 수 있습니다.
+``web3.eth.abi`` 를 사용하면 EVM (Ethereum Virtual Machine)에 대한 함수 호출을 위해 매개 변수를 ABI (Application Binary Interface)로 디코딩 및 인코딩 할 수 있습니다.
 
 
 ------------------------------------------------------------------------------
@@ -26,13 +26,13 @@ encodeFunctionSignature
 or the :ref:`JSON interface <glossary-json-interface>` object of the function. If string it has to be in the form ``function(type,type,...)``, e.g: ``myFunction(uint256,uint32[],bytes10,bytes)``
 
 -------
-반환값
+반환값(Return)
 -------
 
-``String`` - The ABI signature of the function.
+``String`` - 함수의 ABI 서명값
 
 -------
-예제
+예제(Example)
 -------
 
 .. code-block:: javascript
