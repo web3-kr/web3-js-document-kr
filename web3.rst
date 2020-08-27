@@ -24,7 +24,7 @@ Web3.modules
 
     Web3.modules
 
- object 를 수동으로 인스턴스화 가능하게 object 를 모든 주요 sub modules 의 classes 와 함께 return 한다.
+ object 를 수동으로 인스턴스화 가능하게 object 를 모든 주요 sub modules 의 classes 와 함께 return 합니다.
 
 
 이것은 모든 주요 하위 모듈의 클래스와 함께 객체를 반환하여 수동으로 인스턴스화 할 수 있게 해줍니다.
