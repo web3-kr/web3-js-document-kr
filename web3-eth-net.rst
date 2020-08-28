@@ -5,8 +5,7 @@ web3.eth.net
 =========
 
 
-Contains functions to receive information about the current network.
-
+현재 네트워크에 대한 정보를 수신하는 함수를 포함합니다.
 
 ------------------------------------------------------------------------------
 
@@ -23,23 +22,23 @@ getNetworkType
 
     web3.eth.net.getNetworkType([callback])
 
-Guesses the chain the node is connected by comparing the genesis hashes.
+제네시스 해시를 비교하여 노드가 연결된 체인을 추측한다.
 
-.. note:: It's recommended to use the :ref:`web3.eth.getChainId <eth-chainId>` method to detect the currently connected chain.
+.. note:: 현재 연결된 체인을 감지하려면 :ref:`web3.eth.getChainId <eth-chainId>` 방법을 사용하는 것이 좋습니다.
 
 -------
-Returns
+반환값 (Returns)
 -------
 
 ``Promise`` returns ``String``:
-    - ``"main"`` for main network
-    - ``"morden"`` for the morden test network
-    - ``"ropsten"`` for the morden test network
-    - ``"private"`` for undetectable networks.
+    - ``"main"`` 메인 네트워크에 대한 반환
+    - ``"morden"`` 모던 테스트 네트워크에 대한 반환
+    - ``"ropsten"`` 모던 테스트 네트워크에 대한 반환
+    - ``"private"`` 감지할 수 없는 네트워크에 대한 반환
 
 
 -------
-Example
+예시 (Example)
 -------
 
 .. code-block:: javascript
