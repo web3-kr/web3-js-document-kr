@@ -4,8 +4,7 @@
 web3.eth.subscribe
 =========
 
-The ``web3.eth.subscribe`` function lets you subscribe to specific events in the blockchain.
-
+ ``web3.eth.subscribe`` 함수는 블록체인의 특정 이벤트를 구독할 수 있게 해줍니다.
 
 
 subscribe
@@ -19,9 +18,10 @@ subscribe
 Parameters
 ----------
 
-1. ``String`` - The subscription, you want to subscribe to.
-2. ``Mixed`` - (optional) Optional additional parameters, depending on the subscription type.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription, and the subscription itself as 3 parameter.
+1. ``String`` - 구독하고자 하는 이벤트
+2. ``Mixed`` - (optional) 구독 유형에 따른 선택적 인자
+3. ``Function`` - (optional) 옵셔널 콜백, 첫 번째 매개 변수로 오류 개체를 반환하고 두 번째 매개 변수로 결과를 반환합니다. 또한 들어오는 각각의 구독에 대해 호출되며 구독 자체는 3개의 매개 변수로 호출됩니다
+
 
 .. _eth-subscription-return:
 
@@ -29,22 +29,22 @@ Parameters
 Returns
 -------
 
-``EventEmitter`` - A Subscription instance
+``EventEmitter`` - 서브스크립션 개체
 
-    - ``subscription.id``: The subscription id, used to identify and unsubscribing the subscription.
-    - ``subscription.subscribe([callback])``: Can be used to re-subscribe with the same parameters.
-    - ``subscription.unsubscribe([callback])``: Unsubscribes the subscription and returns `TRUE` in the callback if successfull.
-    - ``subscription.arguments``: The subscription arguments, used when re-subscribing.
-    - ``on("data")`` returns ``Object``: Fires on each incoming log with the log object as argument.
+    - ``subscription.id``: 구독을 식별하고 구독을 취소하는 데 사용되는 구독 ID.
+    - ``subscription.subscribe([callback])``: 동일한 파라미터로 재구독하는 데 사용할 수 있습니다.
+    - ``subscription.unsubscribe([callback])``: 구독을 취소하고 성공하면 콜백에 TRUE를 반환합니다.
+    - ``subscription.arguments``: 다시 구독할 때 사용되는 구독 인자 입니다.
+    - ``on("data")`` returns ``Object``: 로그 개체를 인수로 하여 들어오는 각 로그에서 실행합니다.
     - ``on("changed")`` returns ``Object``: Fires on each log which was removed from the blockchain. The log will have the additional property ``"removed: true"``.
     - ``on("error")`` returns ``Object``: Fires when an error in the subscription occurs.
     - ``on("connected")`` returns ``String``: Fires once after the subscription successfully connected. Returns the subscription id.
 
 ----------------
-Notification returns
+알림 반환값
 ----------------
 
-- ``Mixed`` - depends on the subscription, see the different subscriptions for more.
+- ``Mixed`` - 구독한 이벤트에 따라 다른 결과.
 
 -------
 Example
@@ -60,7 +60,7 @@ Example
             console.log(result);
     });
 
-    // unsubscribes the subscription
+    // 구독 취소
     subscription.unsubscribe(function(error, success){
         if(success)
             console.log('Successfully unsubscribed!');
@@ -77,15 +77,15 @@ clearSubscriptions
 
     web3.eth.clearSubscriptions()
 
-Resets subscriptions.
+구독 초기화
 
-.. note:: This will not reset subscriptions from other packages like ``web3-shh``, as they use their own requestManager.
+..note:: "web3-ssh"와 같은 다른 패키지의 구독을 리셋하지는 않을 것 입니다. 그런 패키지들은 각각의 요청매니저(RequestManager)를 사용합니다
 
 ----------
 Parameters
 ----------
 
-1. ``Boolean``: If ``true`` it keeps the ``"syncing"`` subscription.
+1. ``Boolean``: 구독을 계속 불러오고 있을경우 ``true`` 를 반환합니다.
 
 -------
 Returns
@@ -116,14 +116,13 @@ subscribe("pendingTransactions")
 
     web3.eth.subscribe('pendingTransactions' [, callback]);
 
-Subscribes to incoming pending transactions.
-
+들어오는 보류중인 트렌젝션을 구독하는 함수입니다.
 ----------
 Parameters
 ----------
 
-1. ``String`` - ``"pendingTransactions"``, the type of the subscription.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
+1. ``String`` - ``"pendingTransactions"``, 구독의 종류
+2. ``Function`` - (optional) 옵셔널 콜백, 첫 번째 매개 변수로 오류 개체를 반환하고 두 번째 매개 변수로 결과를 반환합니다. 또한 들어오는 각 구독에 대해 호출될 것입니다.
 
 -------
 Returns
