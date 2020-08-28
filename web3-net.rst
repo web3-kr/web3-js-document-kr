@@ -5,19 +5,19 @@ web3.*.net
 ========
 
 
-The ``web3-net`` package allows you to interact with the Ethereum nodes network properties.
+``web3-net`` 패키지는 이더리움 노드 네트워크 속성과 상호작용을 할 수 있게 합니다.
 
 
 .. code-block:: javascript
 
     var Net = require('web3-net');
 
-    // "Personal.providers.givenProvider" will be set if in an Ethereum supported browser.
+    // "Personal.providers.givenProvider" 는 이더리움 지원 브라우저에 의해 설정됩니다.
     var net = new Net(Net.givenProvider || 'ws://some.local-or-remote.node:8546');
 
 
-    // or using the web3 umbrella package
-
+    // web3 umbrella Package 를 사용하는 방법
+    
     var Web3 = require('web3');
     var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
 
